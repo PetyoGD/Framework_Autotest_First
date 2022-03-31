@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.ProductsPage;
@@ -52,7 +53,14 @@ public class ProductTests extends TestUtil {
 
     @Test
     public void addItemToCart(){
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);  //we take the data from the LoginPage
         ProductsPage productsPage = loginPage.login("standard_user","secret_sauce");
+        productsPage.addItemToTheCart("onesie");
+        //if we want to add another item we have to create new assert
+        Assert.assertEquals( productsPage.getItemsInTheCart(),1,"Because we have only one item so far");
+
+        productsPage.removeItemFromTheCart("onesie");
+
+        Assert.assertEquals( productsPage.getItemsInTheCart(),0,"Because we have only one item so far");
     }
 }

@@ -8,10 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
     protected WebDriver driver;   //1. Driver
 
-    @FindBy(id="user-name")
+    @FindBy(id = "user-name")
     private WebElement userNameInput;
 
-    @FindBy(css="[placeholder=Password]")
+    @FindBy(css = "[placeholder=Password]")
     private WebElement passwordInput;
 
     @FindBy(xpath = "//input[@value='Login']")
@@ -22,9 +22,14 @@ public class LoginPage {
         PageFactory.initElements(driver,this); //3.With factory to be possible to initialized upper part
     }
     //4.Then we have to create methods we need to execute test
+
     public ProductsPage login(String username, String password){
-        userNameInput.click();
-        userNameInput.sendKeys(password);
+        userNameInput.clear();
+        userNameInput.sendKeys(username);
+
+        passwordInput.clear();
+        passwordInput.sendKeys(password);
+
 
         loginBtn.click();
                                     //5.Wait method have to be created on this page
