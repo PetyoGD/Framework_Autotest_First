@@ -12,6 +12,8 @@ import org.testng.annotations.AfterTest;//
 import org.testng.annotations.BeforeTest;//
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.LoginPage;
+import pages.ProductsPage;
 import utils.CsvHelper;
 
 import java.io.IOException;
@@ -66,7 +68,7 @@ public class LoginTest extends TestUtil {
 
     @Test(dataProvider = "csvUserList")
     public void SuccessfilLogin(String userName,String password){
-        driver.get("https://www.saucedemo.com/");
+/*        driver.get("https://www.saucedemo.com/");
 //ew use both String parameters (userName & password below as username and pass
         WebElement username = driver.findElement(By.id("user-name"));
         username.click();
@@ -80,6 +82,9 @@ public class LoginTest extends TestUtil {
         loginBtn.click();//copied from r.37 to r.48
 
         WebElement userAllPagesBtn = driver.findElement(By.id("react-burger-menu-btn"));
-        Assert.assertTrue(userAllPagesBtn.isDisplayed());//copied from FirstSTest r.42 to r.43
+        Assert.assertTrue(userAllPagesBtn.isDisplayed());//copied from FirstSTest r.42 to r.43 */
+
+        LoginPage loginPage = new LoginPage(driver);
+        ProductsPage productsPage = loginPage.login(userName,password); //instead of upper rows
     }
 }
