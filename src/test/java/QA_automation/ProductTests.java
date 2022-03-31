@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.LoginPage;
 import pages.ProductsPage;
 
@@ -58,9 +59,13 @@ public class ProductTests extends TestUtil {
         productsPage.addItemToTheCart("onesie");
         //if we want to add another item we have to create new assert
         Assert.assertEquals( productsPage.getItemsInTheCart(),1,"Because we have only one item so far");
-
+        //hard assert
         productsPage.removeItemFromTheCart("onesie");
+        //soft assert
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals( productsPage.getItemsInTheCart(),0,"Because we have only one item so far");
+        System.out.println(("I will be executed"));
 
-        Assert.assertEquals( productsPage.getItemsInTheCart(),0,"Because we have only one item so far");
+        softAssert.assertAll(); //this assert is executed at the end of the test and will gather all asserts
     }
 }
