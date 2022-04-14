@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite thread-count="3" verbose="1" name="Framework_Autotest_First"
+       annotations="JDK" parallel="tests">
+
+    <test name="ProductsTests">
+        <classes>
+            <class name="course.work.petyo.tests.ProductsTests"/>
+        </classes>
+    </test>
+    <test name="LoginTest">
+        <classes>
+            <class name="course.work.petyo.tests.LoginTest"/>
+        </classes>
+    </test>
+    <test name="LoginNoPassTest">
+        <classes>
+            <class name="course.work.petyo.tests.LoginNoPassTest"/>
+        </classes>
+    </test>
+</suite>
